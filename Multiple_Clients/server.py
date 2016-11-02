@@ -189,8 +189,9 @@ class MultiServer(object):
                 if len(str.encode(cmd)) > 0:
                     conn.send(str.encode(cmd))
                     cmd_output = self.read_command_output(conn)
-                    client_response = str(cmd_output, "utf-8")
-                    print(client_response, end="")
+                    if cmd_output is not None:
+                        client_response = str(cmd_output, "utf-8")
+                        print(client_response, end="")
                 if cmd == 'quit':
                     break
             except Exception as e:
